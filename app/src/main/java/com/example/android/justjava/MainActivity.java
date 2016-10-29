@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.NumberFormat;
+
 public class MainActivity extends AppCompatActivity {
 
     private int quantity = 1;
@@ -30,28 +32,26 @@ public class MainActivity extends AppCompatActivity {
         boolean hasChocolate = chocolateCheckBox.isChecked();
 
         int price = calculatePrice(hasWhippedCream, hasChocolate);
+        String priceMessage = createOrderSummary(price, hasWhippedCream, hasChocolate, customer);
 
         Intent sendEmail = new Intent(Intent.ACTION_SENDTO);
         sendEmail.setData(Uri.parse("mailto:"));
-        sendEmail.putExtra(Intent.EXTRA_SUBJECT, "JustJava order for " + customer);
-        sendEmail.putExtra(Intent.EXTRA_TEXT, createOrderSummary(price, hasWhippedCream, hasChocolate, customer));
+        sendEmail.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.subject, customer));
+        sendEmail.putExtra(Intent.EXTRA_TEXT, priceMessage);
 //        sendEmail.putExtra(Intent.EXTRA_EMAIL, "musti2304@gmail.com");
         if(sendEmail.resolveActivity(getPackageManager()) != null) {
             startActivity(sendEmail);
         }
-
-        /*String priceMessage = createOrderSummary(price, hasWhippedCream, hasChocolate, customer);
-        displayMessage(priceMessage);*/
     }
 
 
     public String createOrderSummary(int price, boolean hasWhippedCream, boolean hasChocolate, String customer) {
-        String priceMessage = "Name: " + customer;
-        priceMessage += "\nAdd whipped cream? " + hasWhippedCream;
-        priceMessage += "\nAdd chocolate? " + hasChocolate;
-        priceMessage += "\nQuantity: " + quantity;
-        priceMessage += "\nTotal: $" + price;
-        priceMessage += "\nThank you!";
+        String priceMessage = getString(R.string.order_summary_name, customer);
+        priceMessage += getString(R.string.order_summary_cream, hasWhippedCream);
+        priceMessage += getString(R.string.order_summary_chocolate, hasChocolate);
+        priceMessage += getString(R.string.order_summary_quantity, quantity);
+        priceMessage += getString(R.string.order_summary_total, NumberFormat.getCurrencyInstance().format(price));
+        priceMessage += getString(R.string.thank_you);
         return priceMessage;
     }
 
@@ -92,14 +92,4 @@ public class MainActivity extends AppCompatActivity {
         quantityTextView.setText("" + number);
     }
 
-/*    private void displayMessage(String message) {
-        TextView orderSummaryTextView = (TextView) findViewById(R.id.price_text_view);
-        orderSummaryTextView.setText(message);
-    }*/
-
-/*    private void displayPrice(int number) {
-        TextView orderSummaryTextView = (TextView) findViewById(R.id.price_text_view);
-        orderSummaryTextView.setText(NumberFormat.getCurrencyInstance().format(number));
-    }
-*/
 }
