@@ -15,6 +15,7 @@
     <string name="order_summary_quantity">\nQuantity: <xliff:g id="quantity">%d</xliff:g></string>
     <string name="order_summary_total">\nTotal: <xliff:g id="price">%s</xliff:g></string>
     <string name="thank_you">\nThank you!</string>
+
     <string name="subject">Just Java order for <xliff:g id="subject">%s</xliff:g></string>
 
 </resources>

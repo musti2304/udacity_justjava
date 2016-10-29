@@ -10,10 +10,10 @@
     <string name="order">Bestellen</string>
 
     <string name="order_summary_name">Name: <xliff:g id="name">%s</xliff:g></string>
-    <string name="chocolate_2">\nMit Schokolade? </string>
-    <string name="cream_2">\nMit Sahne? </string>
-    <string name="quantity_2">\nMenge:</string>
-    <string name="total">\nSumme: <xliff:g id="summe">%s</xliff:g>€</string>
+    <string name="order_summary_chocolate">\nMit Schokolade? <xliff:g id="schoko">%b</xliff:g></string>
+    <string name="order_summary_cream">\nMit Sahne? <xliff:g id="sahne">%b</xliff:g></string>
+    <string name="order_summary_quantity">\nMenge: <xliff:g id="menge">%d</xliff:g></string>
+    <string name="order_summary_total">\nSumme: <xliff:g id="summe">%s</xliff:g></string>
     <string name="thank_you">\nVielen Dank!</string>
 
     <string name="subject">Just Java Bestellung für <xliff:g id="subject">%s</xliff:g></string>
